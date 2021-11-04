@@ -3,18 +3,16 @@ import Modal from "react-modal";
 import Index from "../about/index";
 
 const heroContent = {
-  heroImage: "img/hero/light.jpg",
+  heroImage: "img/hero/imgfondo.png",
   heroMobileImage: "img-mobile-light",
-  heroTitleName: "Maria Jesus Stevenson",
-  heroDesignation: "Profesora de Español",
-  heroDescriptions: `I'm a Tunisian based web designer & front‑end developer focused on
-  crafting clean & user‑friendly experiences, I am passionate about
-  building excellent software that improves the lives of those
-  around me.`,
+  heroTitleName: "Maria Stevenson",
+  heroDesignation: "Tutora de Español",
+  heroDescriptions: `Soy Chilena, pero actualmente vivo en Nueva Zelanda. Me encanta enseñar español y hablar de diferentes temas con mis estudiantes.
+  Aprender cualquier idioma debería ser divertido. Puede haber días en los que te sientas desanimado o desmotivado, pero eso nunca debería impedirte lograr tu sueño.`,
   heroBtn: "Ver Temas",
 };
 
-const HeroLight = () => {
+const HeroLight = ({ on }) => {
   const [isOpen, setIsOpen] = useState(false);
   function toggleModalOne() {
     setIsOpen(!isOpen);
@@ -39,14 +37,14 @@ const HeroLight = () => {
               alt="hero man"
             />
             <h1 className="text-uppercase poppins-font">
-              Soy {heroContent.heroTitleName}.
+              ¡Hola! Soy {heroContent.heroTitleName}.
               <span>{heroContent.heroDesignation}</span>
             </h1>
             <p className="open-sans-font">{heroContent.heroDescriptions}</p>
-           {/*  <button className="button" onClick={toggleModalOne}>
-              <span className="button-text">{heroContent.heroBtn}</span>
+            <button className="button" onClick={()=>on()}>
+              <span className="button-text">¡Vamos a hablar!</span>
               <span className="button-icon fa fa-arrow-right"></span>
-            </button> */}
+            </button>
           </div>
         </div>
       </div>

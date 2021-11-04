@@ -16,7 +16,7 @@ const App = () => {
       <AnimatedCursor
         innerSize={8}
         outerSize={44}
-        color="255, 160, 1"
+        color="#e4a08c"
         outerAlpha={0.3}
         innerScale={0.7}
         outerScale={1.2}
