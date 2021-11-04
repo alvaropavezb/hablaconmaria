@@ -4,7 +4,7 @@ import Index from "../about/index";
 
 const heroContent = {
   heroImage: "img/hero/imgfondo.png",
-  heroMobileImage: "img-mobile-light",
+  heroMobileImage: "fondoSmall",
   heroTitleName: "Maria Stevenson",
   heroDesignation: "Tutora de Español",
   heroDescriptions: `Soy Chilena, pero actualmente vivo en Nueva Zelanda. Me encanta enseñar español y hablar de diferentes temas con mis estudiantes.
@@ -32,7 +32,7 @@ const HeroLight = ({ on }) => {
         <div className="col-12 col-lg-8 offset-lg-4 home-details  text-center text-lg-start">
           <div>
             <img
-              src={`img/hero/${heroContent.heroMobileImage}.jpg`}
+              src={`img/hero/${heroContent.heroMobileImage}.png`}
               className="img-fluid main-img-mobile d-sm-block d-lg-none"
               alt="hero man"
             />
