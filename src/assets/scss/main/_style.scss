@@ -62,6 +62,10 @@ body {
   background-color: #111;
 }
 
+.pregunta{
+  font-size: large;
+}
+
 .poppins-font {
   font-family: "Poppins", sans-serif;
 }
@@ -1283,7 +1287,7 @@ body.light .contact .custom-span-contact a {
   .img-fluid {
     @media (min-width: 1350px) {
       background: #ddd;
-      min-height: 396px;
+      min-height: 296px;
     }
     @media (max-width: 450px) {
       min-height: 173px;

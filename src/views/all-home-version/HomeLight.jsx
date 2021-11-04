@@ -1,13 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import Hero from "../../components/hero/HeroLight";
-import Index from "../../components/about/index";
-import Address from "../../components/Address";
-import Portfolio from "../../components/portfolio/PortfolioLight";
 import Blog from "../../components/blog/BlogLight";
-import Contact from "../../components/Contact";
-import Social from "../../components/Social";
 import AnimatedCursor from "react-animated-cursor";
+import { firestore } from "../../firebase/firebase.utils";
 
 const menuItem = [
   { icon: "fa-home", menuName: "Inicio" },
@@ -18,6 +14,21 @@ const menuItem = [
 ];
 
 const HomeLight = () => {
+  const [topics, setTopics] = useState([]);
+
+  useEffect(() => {
+    firestore
+      .collection("topics")
+      .get()
+      .then((querySnapshot) => {
+        let topics = [];
+        querySnapshot.forEach((doc) => {
+          topics.push({ id: doc.id, ...doc.data() });
+        });
+        setTopics(topics);
+      });
+  }, []);
+
   document.body.classList.add("light");
 
   const [tabIndex, setTabIndex] = useState(0);
@@ -58,7 +69,7 @@ const HomeLight = () => {
               data-aos-duration="1200"
             >
               <div className="color-block d-none d-lg-block"></div>
-              <Hero on={goToTopics}/>
+              <Hero on={goToTopics} />
             </div>
           </TabPanel>
           {/* Hero Content Ends */}
@@ -82,7 +93,7 @@ const HomeLight = () => {
             >
               {/*  Articles Starts  */}
               <div className="row pb-50">
-                <Blog />
+                <Blog topics={topics} />
               </div>
               {/* Articles Ends */}
             </div>

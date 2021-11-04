@@ -36,12 +36,13 @@ const HeroLight = ({ on }) => {
               className="img-fluid main-img-mobile d-sm-block d-lg-none"
               alt="hero man"
             />
+
             <h1 className="text-uppercase poppins-font">
               ¡Hola! Soy {heroContent.heroTitleName}.
               <span>{heroContent.heroDesignation}</span>
             </h1>
             <p className="open-sans-font">{heroContent.heroDescriptions}</p>
-            <button className="button" onClick={()=>on()}>
+            <button className="button" onClick={() => on()}>
               <span className="button-text">¡Vamos a hablar!</span>
               <span className="button-icon fa fa-arrow-right"></span>
             </button>
