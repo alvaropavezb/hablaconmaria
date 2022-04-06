@@ -36,7 +36,7 @@ export const addTopic = async (name, image, preguntas) => {
       const coverImage = url;
       console.log(coverImage);
       firebase.firestore().collection("topics").doc(name).set({
-        coverImage: coverImage,
+        coverImg: coverImage,
         preguntas: preguntas,
       });
       alert("Guardado");
