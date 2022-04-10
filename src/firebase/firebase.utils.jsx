@@ -42,10 +42,13 @@ export const addTopic = async (name, image, preguntas) => {
       alert("Guardado");
     });
   });
+};
 
-  /* await firebase.firestore().collection("topics").doc(name).set({
-    name: "test",
-  }); */
+export const addNews = async (name, image, preguntas) => {
+  firebase.firestore().collection("topics").doc(name).set({
+    preguntas: preguntas,
+  });
+  alert("Guardado");
 };
 
 // Initialize Firebase
