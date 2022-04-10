@@ -4,6 +4,7 @@ import Hero from "../../components/hero/HeroLight";
 import Blog from "../../components/blog/BlogLight";
 import AnimatedCursor from "react-animated-cursor";
 import { firestore } from "../../firebase/firebase.utils";
+import NewsLight from "../../components/news/NewsLight";
 
 const menuItem = [
   { icon: "fa-home", menuName: "Inicio" },
@@ -11,10 +12,12 @@ const menuItem = [
   { icon: "fa-briefcase", menuName: "Portfolio" },
   { icon: "fa-envelope-open", menuName: "Contact" }, */
   { icon: "fa-comments", menuName: "Topics" },
+  { icon: "fa-newspaper-o", menuName: "News" },
 ];
 
 const HomeLight = () => {
   const [topics, setTopics] = useState([]);
+  const [news, setNews] = useState([]);
 
   useEffect(() => {
     firestore
@@ -27,6 +30,16 @@ const HomeLight = () => {
         });
         setTopics(topics);
       });
+    firestore
+      .collection("news")
+      .get()
+      .then((querySnapshot) => {
+        let topics = [];
+        querySnapshot.forEach((doc) => {
+          topics.push({ id: doc.id, ...doc.data() });
+        });
+        setNews(topics);
+      });
   }, []);
 
   document.body.classList.add("light");
@@ -38,20 +51,20 @@ const HomeLight = () => {
   };
 
   return (
-    <div className="green">
+    <div className='green'>
       <AnimatedCursor
         innerSize={8}
         outerSize={44}
-        color="228, 160, 140"
+        color='228, 160, 140'
         outerAlpha={0.3}
         innerScale={0.7}
         outerScale={1.2}
       />
       <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-        <div className="header">
-          <TabList className=" icon-menu  revealator-slideup revealator-once revealator-delay1">
+        <div className='header'>
+          <TabList className=' icon-menu  revealator-slideup revealator-once revealator-delay1'>
             {menuItem.map((item, i) => (
-              <Tab className="icon-box" key={i}>
+              <Tab className='icon-box' key={i}>
                 <i className={`fa ${item.icon}`}></i>
                 <h2>{item.menuName}</h2>
               </Tab>
@@ -60,45 +73,66 @@ const HomeLight = () => {
         </div>
         {/* End Menu Content */}
 
-        <div className="tab-panel_list">
+        <div className='tab-panel_list'>
           {/* Hero Content Starts */}
-          <TabPanel className="home ">
+          <TabPanel className='home '>
             <div
-              className="container-fluid main-container container-home p-0 "
-              data-aos="fade-up"
-              data-aos-duration="1200"
+              className='container-fluid main-container container-home p-0 '
+              data-aos='fade-up'
+              data-aos-duration='1200'
             >
-              <div className="color-block d-none d-lg-block"></div>
+              <div className='color-block d-none d-lg-block'></div>
               <Hero on={goToTopics} />
             </div>
           </TabPanel>
           {/* Hero Content Ends */}
 
           {/* Blog Content Starts */}
-          <TabPanel className="blog">
+          <TabPanel className='blog'>
             <div
-              className="title-section text-left text-sm-center "
-              data-aos="fade-up"
-              data-aos-duration="1200"
+              className='title-section text-left text-sm-center '
+              data-aos='fade-up'
+              data-aos-duration='1200'
             >
               <h1>
                 temas <span>de conversacion</span>
               </h1>
-              <span className="title-bg">español</span>
+              <span className='title-bg'>español</span>
             </div>
             <div
-              className="container"
-              data-aos="fade-up"
-              data-aos-duration="1200"
+              className='container'
+              data-aos='fade-up'
+              data-aos-duration='1200'
             >
               {/*  Articles Starts  */}
-              <div className="row pb-50">
+              <div className='row pb-50'>
                 <Blog topics={topics} />
               </div>
               {/* Articles Ends */}
             </div>
           </TabPanel>
           {/* Blog Content Ends */}
+          <TabPanel className='news'>
+            <div
+              className='title-section text-left text-sm-center '
+              data-aos='fade-up'
+              data-aos-duration='1200'
+            >
+              <h1>Noticias</h1>
+              <span className='title-bg'>NEWS</span>
+            </div>
+            <div
+              className='container'
+              data-aos='fade-up'
+              data-aos-duration='1200'
+            >
+              {/*  Articles Starts  */}
+              <div className='row pb-50'>
+                <NewsLight topics={news} />
+              </div>
+              {/* Articles Ends */}
+            </div>
+          </TabPanel>
         </div>
       </Tabs>
     </div>
