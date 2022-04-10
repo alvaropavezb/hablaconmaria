@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import AnimatedCursor from "react-animated-cursor";
-import Editable from "../../components/editable/Editable";
-import { addTopic, firestore } from "../../firebase/firebase.utils";
+import { addNew, addTopic } from "../../firebase/firebase.utils";
 const Admin = () => {
   const [topicName, setTopicName] = useState("");
   const [textArea, setTextArea] = useState("");
@@ -41,11 +40,7 @@ const Admin = () => {
     setEnabled(true);
     const preguntas = textAreaNew.split(/\r?\n/);
     const voca = textAreaVocNew.split(/\r?\n/);
-    console.log(preguntas);
-    console.log(voca);
-    console.log(url);
-    console.log(topicNew);
-    //addTopic(topicName, image, preguntas);
+    addNew(topicNew,preguntas,voca,url);
   };
 
   const handleChange = (event) => {

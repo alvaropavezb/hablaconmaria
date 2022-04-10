@@ -1,9 +1,9 @@
 import { LinkPreview } from "@dhaiwat10/react-link-preview";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
-
 import { useParams } from "react-router-dom";
 import { firestore } from "../../firebase/firebase.utils";
+
 
 Modal.setAppElement("#root");
 
@@ -12,6 +12,7 @@ const NewsLight = (topics) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [preguntas, setPreguntas] = useState([]);
+  const [vocabularios, setVocabularios] = useState([]);
   const [titulo, setTitulo] = useState("");
   const [subtitulo, setSubtitulo] = useState("");
 
@@ -23,15 +24,11 @@ const NewsLight = (topics) => {
         console.log(topics.topics[id].id);
         setPreguntas(topics.topics[id].preguntas);
         setTitulo(topics.topics[id].id);
-        setSubtitulo(topics.topics[id].ingles);
+        setVocabularios(topics.topics[id].vocabulario)
       }
 
       setIsOpen(!isOpen);
     }
-  }
-
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   const handleOnChange = (event) => {
@@ -108,7 +105,7 @@ const NewsLight = (topics) => {
                 </h4>
               </div>
               <div className='blog-excerpt open-sans-font pb-5'>
-                {preguntas.map((pregunta, index) => (
+                {vocabularios.map((pregunta, index) => (
                   <p
                     className='open-sans-font mt-sm-1 pregunta'
                     for={index}
@@ -123,30 +120,6 @@ const NewsLight = (topics) => {
           </div>
         </div>
       </Modal>
-
-      {/* Blog 1 Starts */}
-
-      {/*  Blog 1 Ends */}
-
-      {/*  Blog 2 Starts */}
-
-      {/*  Blog 2 Ends */}
-
-      {/*  Blog 3 Starts */}
-
-      {/* Blog 3 Ends */}
-
-      {/* Blog 4 Starts */}
-
-      {/* Blog 4  Ends */}
-
-      {/*  Blog 5 Starts */}
-
-      {/*  Blog 5 Ends */}
-
-      {/* Blog 6 Starts */}
-
-      {/* Blog 6 Ends */}
     </>
   );
 };

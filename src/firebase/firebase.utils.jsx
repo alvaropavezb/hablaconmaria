@@ -1,7 +1,7 @@
 import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import "firebase/compat/storage";
-import "firebase/compat/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlsLWHqT0kn3t6kWl6_0RHrDDNH3KvjBU",
@@ -44,9 +44,11 @@ export const addTopic = async (name, image, preguntas) => {
   });
 };
 
-export const addNews = async (name, image, preguntas) => {
-  firebase.firestore().collection("topics").doc(name).set({
+export const addNew = async (name, preguntas,voca,url) => {
+  firebase.firestore().collection("news").doc(name).set({
     preguntas: preguntas,
+    vocabulario:voca,
+    url:url,
   });
   alert("Guardado");
 };
